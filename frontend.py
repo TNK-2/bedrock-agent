@@ -9,8 +9,9 @@ from botocore.eventstream import EventStreamError
 
 def initialize_session():
     """セッションの初期設定を行う"""
+    load_dotenv()  # Move load_dotenv here to ensure it's loaded before using env vars
     if "client" not in st.session_state:
-        st.session_state.client = boto3.client("bedrock-agent-runtime", region_name="us-east-1")
+        st.session_state.client = boto3.client("bedrock-agent-runtime", region_name=os.getenv("AWS_REGION", "us-east-1"))
     
     if "session_id" not in st.session_state:
         st.session_state.session_id = str(uuid.uuid4())
@@ -98,7 +99,6 @@ def handle_trace_event(event):
 
 def invoke_bedrock_agent(client, session_id, prompt):
     """Bedrockエージェントを呼び出す"""
-    load_dotenv()
     return client.invoke_agent(
         agentId=os.getenv("AGENT_ID"),
         agentAliasId=os.getenv("AGENT_ALIAS_ID"),
