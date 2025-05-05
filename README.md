@@ -2,6 +2,8 @@
 
 AWSのBedrock Agentを活用したチャットアプリケーションです。質問に対して、エージェントがナレッジベースを検索したり、サブエージェントを呼び出したりして回答します。
 
+ref : https://aws.amazon.com/jp/builders-flash/202503/create-ai-advisor-with-bedrock/
+
 ## 機能
 
 - 自然言語で質問ができるチャットインターフェース
